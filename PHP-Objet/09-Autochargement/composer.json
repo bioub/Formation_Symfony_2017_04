@@ -1,0 +1,8 @@
+{
+  "autoload": {
+    "psr-4": {
+      "Malta\\Entity\\": "Entity",
+      "Malta\\Logger\\": "Logger"
+    }
+  }
+}
