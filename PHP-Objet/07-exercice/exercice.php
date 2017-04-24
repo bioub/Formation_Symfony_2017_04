@@ -1,7 +1,7 @@
 <?php
 
-require_once 'Entity\Contact.php';
-require_once 'Entity\CompteBancaire.php';
+require_once 'Entity/Contact.php';
+require_once 'Entity/CompteBancaire.php';
 
 // 1 - Faire en sorte que le code suivant fonctionne
 // - Créer un constructeur dans CompteBancaire qui
@@ -10,7 +10,7 @@ require_once 'Entity\CompteBancaire.php';
 $cptCourant = new \Malta\Entity\CompteBancaire();
 $cptCourant->setType('Courant');
 
-$ctc2 = new \Malta\Entity\Contact();
+$ctc2 = new \Malta\Entity\Proprietaire();
 $ctc2->setPrenom('Eric');
 $ctc2->setNom('Martin');
 

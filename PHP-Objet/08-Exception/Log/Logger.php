@@ -1,5 +1,7 @@
 <?php
 
+namespace Malta\Log;
+
 class Logger
 {
     protected $fileRes;

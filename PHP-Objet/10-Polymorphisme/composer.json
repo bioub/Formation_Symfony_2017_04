@@ -1,8 +1,10 @@
 {
   "autoload": {
     "psr-4": {
-      "Malta\\Entity\\": "Entity",
       "Malta\\Log\\": "Log"
     }
+  },
+  "require": {
+    "psr/log": "^1.0"
   }
 }

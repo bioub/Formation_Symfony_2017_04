@@ -1,0 +1,11 @@
+{
+  "autoload": {
+    "psr-4": {
+      "Malta\\Log\\": "Log",
+      "Malta\\Calculette\\": "Calculette"
+    }
+  },
+  "require": {
+    "psr/log": "^1.0"
+  }
+}

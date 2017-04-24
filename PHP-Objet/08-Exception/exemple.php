@@ -2,9 +2,9 @@
 
 use Malta\Entity\CompteBancaire;
 
-require_once 'Entity\Contact.php';
-require_once 'Entity\CompteBancaire.php';
-require_once 'Log\Logger.php';
+require_once 'Entity/Contact.php';
+require_once 'Entity/CompteBancaire.php';
+require_once 'Log/Logger.php';
 
 // 1 - Faire en sorte que le code suivant fonctionne
 // - Créer un constructeur dans CompteBancaire qui
@@ -29,7 +29,7 @@ try {
         $cptCourant->getProprietaire()->getNom();
 }
 catch (Exception $e) {
-    $logger = new Logger('app.log');
+    $logger = new \Malta\Log\LoggerAvecInterface('app.log');
     $logger->log('Erreur : ' . $e->getMessage());
 }
 

@@ -10,6 +10,10 @@ namespace Malta\Entity;
 
 class CompteBancaire
 {
+    const TYPE_COURANT = 'Courant';
+    const TYPE_PEL = 'Plan Epargne Logement';
+    const TYPE_LIVRET_A = 'Livret A';
+
     protected $type;
     protected $solde;
 
@@ -37,6 +41,10 @@ class CompteBancaire
      */
     public function setType($type)
     {
+        if (!in_array($type, [self::TYPE_COURANT, self::TYPE_LIVRET_A, self::TYPE_PEL])) {
+            throw new \BadMethodCallException("Le type $type n'existe pas");
+        }
+
         $this->type = $type;
         return $this;
     }
