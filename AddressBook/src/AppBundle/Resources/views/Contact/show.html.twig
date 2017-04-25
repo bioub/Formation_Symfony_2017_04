@@ -1,0 +1,12 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{{ contact.prenom }} {{ contact.nom }}{% endblock %}
+
+{% block body %}
+    <h1>{{ contact.prenom }} {{ contact.nom | upper }}</h1>
+
+    {% if contact.email is defined %}
+        <p>Email : {{ contact.email }}</p>
+    {% endif %}
+
+{% endblock %}

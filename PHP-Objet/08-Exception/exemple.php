@@ -29,7 +29,7 @@ try {
         $cptCourant->getProprietaire()->getNom();
 }
 catch (Exception $e) {
-    $logger = new \Malta\Log\LoggerAvecInterface('app.log');
+    $logger = new \Malta\Log\Logger('app.log');
     $logger->log('Erreur : ' . $e->getMessage());
 }
 
