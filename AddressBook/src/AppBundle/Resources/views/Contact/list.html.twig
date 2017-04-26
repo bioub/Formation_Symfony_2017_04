@@ -15,17 +15,42 @@
         </thead>
         <tbody>
         {% for c in contacts %}
-        <tr>
-            <th scope="row">{{ c.id }}</th>
-            <td>{{ c.prenom }}</td>
-            <td>{{ c.nom }}</td>
-            <td>
-                <a href="{{ path('app_contact_show', {'id': c.id}) }}" class="btn btn-primary btn-xs">
-                    Afficher
-                </a>
-            </td>
-        </tr>
+            <tr>
+                <th scope="row">{{ c.id }}</th>
+                <td>{{ c.prenom }}</td>
+                <td>{{ c.nom }}</td>
+                <td>
+                    <a href="{{ path('app_contact_show', {'id': c.id}) }}" class="btn btn-primary btn-xs">
+                        Afficher
+                    </a>
+                </td>
+            </tr>
         {% endfor %}
         </tbody>
     </table>
+
+    <h2>Stats par société</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Société</th>
+            <th>Nombre de contact</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in statsBySociete %}
+            <tr>
+                <td>
+                    {% if row.nom %}
+                        {{ row.nom }}
+                    {% else %}
+                        <i>Pas de société</i>
+                    {% endif %}
+                </td>
+                <td>{{ row.nb_contacts }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
 {% endblock %}

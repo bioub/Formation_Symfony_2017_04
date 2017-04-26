@@ -5,8 +5,8 @@
 {% block body %}
     <h1>{{ contact.prenom }} {{ contact.nom | upper }}</h1>
 
-    {% if contact.email is defined %}
-        <p>Email : {{ contact.email }}</p>
+    {% if contact.societe %}
+        <p>Société : {{ contact.societe.nom }}</p>
     {% endif %}
 
 {% endblock %}

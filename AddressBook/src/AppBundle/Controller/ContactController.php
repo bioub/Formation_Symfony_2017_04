@@ -3,6 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Contact;
+use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\Driver\PDOStatement;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -17,11 +19,21 @@ class ContactController extends Controller
     public function listAction()
     {
         $repo = $this->getDoctrine()->getRepository(Contact::class);
+        $contacts = $repo->findBy([], ['prenom' => 'ASC']);
 
-        $contacts = $repo->findAll();
+        $sql = "SELECT s.nom, COUNT(c.id) as nb_contacts
+                FROM contact c
+                LEFT JOIN societe s ON s.id = societe_id
+                GROUP BY s.nom";
+
+        /** @var Connection $connect */
+        $connect = $this->getDoctrine()->getConnection();
+        $stmt = $connect->query($sql);
+        $statsBySociete = $stmt->fetchAll();
 
         return $this->render('AppBundle:Contact:list.html.twig', array(
-            'contacts' => $contacts
+            'contacts' => $contacts,
+            'statsBySociete' => $statsBySociete
         ));
     }
 
@@ -53,7 +65,7 @@ class ContactController extends Controller
     {
         $repo = $this->getDoctrine()->getRepository(Contact::class);
 
-        $contact = $repo->find($id);
+        $contact = $repo->findWithSocieteInSql($id);
 
         return $this->render('AppBundle:Contact:show.html.twig', array(
             'contact' => $contact
