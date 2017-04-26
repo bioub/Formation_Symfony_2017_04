@@ -3,11 +3,13 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Contact;
+use AppBundle\Form\ContactType;
 use AppBundle\Manager\ContactManager;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Driver\PDOStatement;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @Route("/contacts")
@@ -17,7 +19,7 @@ class ContactController extends Controller
     /**
      * @Route("/")
      */
-    public function listAction()
+    public function listAction(Request $request)
     {
         $contactManager = $this->get('app.manager.contact_manager');
         $contacts = $contactManager->getAll();
@@ -34,19 +36,24 @@ class ContactController extends Controller
     /**
      * @Route("/add")
      */
-    public function addAction()
+    public function addAction(Request $request)
     {
-        /*
-        $contact = new Contact();
-        $contact->setPrenom('Bill')->setNom('Gates');
+        $form = $this->createForm(ContactType::class);
 
-        $em = $this->getDoctrine()->getEntityManager();
-        $em->persist($contact);
-        $em->flush();
-        */
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $contactManager = $this->get('app.manager.contact_manager');
+            $contact = $form->getData();
+            $contactManager->save($contact);
+
+            $this->addFlash('success', "Le contact {$contact->getPrenom()} a bien été inséré");
+
+            return $this->redirectToRoute('app_contact_list');
+        }
 
         return $this->render('AppBundle:Contact:add.html.twig', array(
-            // ...
+            'contactForm' => $form->createView()
         ));
     }
 

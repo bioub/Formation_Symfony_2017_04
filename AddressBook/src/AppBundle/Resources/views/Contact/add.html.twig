@@ -1,7 +1,19 @@
+{% form_theme contactForm 'bootstrap_3_horizontal_layout.html.twig' %}
 {% extends "::base.html.twig" %}
 
-{% block title %}AppBundle:Contact:add{% endblock %}
+{% block title %}Ajouter un contact{% endblock %}
 
 {% block body %}
-<h1>Welcome to the Contact:add page</h1>
+<h1>Ajouter un contact</h1>
+    {{ form_start(contactForm) }}
+    {{ form_row(contactForm.prenom) }}
+    {{ form_row(contactForm.nom) }}
+    {{ form_row(contactForm.dateNaissance) }}
+    {{ form_row(contactForm.societe) }}
+    <div class="row">
+        <div class="col-md-10 col-md-offset-2">
+            <button type="submit" class="btn btn-primary">Ajouter</button>
+        </div>
+    </div>
+    {{ form_end(contactForm) }}
 {% endblock %}

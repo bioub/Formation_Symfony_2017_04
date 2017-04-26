@@ -51,4 +51,11 @@ class ContactManager
         $repo = $this->doctrine->getRepository(Contact::class);
         return $repo->findWithSocieteInSql($id);
     }
+
+    public function save(Contact $contact)
+    {
+        $em = $this->doctrine->getManager();
+        $em->persist($contact);
+        $em->flush();
+    }
 }
