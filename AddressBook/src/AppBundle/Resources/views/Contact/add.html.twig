@@ -5,7 +5,7 @@
 
 {% block body %}
 <h1>Ajouter un contact</h1>
-    {{ form_start(contactForm) }}
+    {{ form_start(contactForm, {'attr': {'novalidate': 'novalidate'}}) }}
     {{ form_row(contactForm.prenom) }}
     {{ form_row(contactForm.nom) }}
     {{ form_row(contactForm.email) }}

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <title>{% block title %}Welcome!{% endblock %}</title>
-    <link rel="stylesheet" href="{{ asset('bootstrap-3.3.7-dist/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/maltabootstrap/bootstrap-3.3.7/css/bootstrap.css') }}">
     {% block stylesheets %}{% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
 </head>
@@ -37,8 +37,8 @@
 <div class="container">
     {% block body %}{% endblock %}
 </div>
-<script src="{{ asset('bootstrap-3.3.7-dist/js/jquery-3.2.1.js') }}"></script>
-<script src="{{ asset('bootstrap-3.3.7-dist/js/bootstrap.js') }}"></script>
+<script src="{{ asset('bundles/maltabootstrap/jquery-3.2.1/jquery.js') }}"></script>
+<script src="{{ asset('bundles/maltabootstrap/bootstrap-3.3.7/js/bootstrap.js') }}"></script>
 {% block javascripts %}{% endblock %}
 </body>
 </html>

@@ -1,0 +1,7 @@
+services:
+  malta.bootstrap.twig.extension.alert:
+    class: Malta\BootstrapBundle\Twig\Extension\AlertExtension
+    arguments: ['@session']
+    public: false
+    tags:
+      - { name: twig.extension }
