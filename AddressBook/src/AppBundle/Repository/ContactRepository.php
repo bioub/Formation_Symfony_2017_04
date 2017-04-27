@@ -23,7 +23,7 @@ class ContactRepository extends \Doctrine\ORM\EntityRepository
         return $this->getEntityManager()
             ->createQuery($dql)
             ->setParameter('id', $id)
-            ->getSingleResult();
+            ->getOneOrNullResult();
     }
 
     public function findWithSocieteInSql($id)
@@ -49,6 +49,6 @@ class ContactRepository extends \Doctrine\ORM\EntityRepository
         return $this->getEntityManager()
             ->createNativeQuery($sql, $rsm)
             ->setParameter('id', $id)
-            ->getSingleResult();
+            ->getOneOrNullResult();
     }
 }

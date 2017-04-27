@@ -19,21 +19,27 @@ class Societe
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=40)
      */
-    private $nom;
+    protected $nom;
 
     /**
      * @var string
      *
      * @ORM\Column(name="ville", type="string", length=40)
      */
-    private $ville;
+    protected $ville;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Contact", mappedBy="societe")
+     */
+    protected $contacts;
 
 
     /**
@@ -92,5 +98,10 @@ class Societe
     public function getVille()
     {
         return $this->ville;
+    }
+
+    public function __toString()
+    {
+        return $this->nom;
     }
 }

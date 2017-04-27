@@ -15,7 +15,7 @@ class Contact
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -24,16 +24,23 @@ class Contact
     /**
      * @var string
      *
-     * @ORM\Column(name="prenom", type="string", length=40)
+     * @ORM\Column(length=40)
      */
     protected $prenom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=40)
+     * @ORM\Column(length=40)
      */
     protected $nom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(length=80, nullable=true)
+     */
+    protected $email;
 
     /**
      * @var \DateTime
@@ -45,9 +52,22 @@ class Contact
     /**
      * @var Societe
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Societe")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Societe", inversedBy="contacts")
      */
     protected $societe;
+
+    /**
+     * @param int $id
+     * @return Contact
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+
+
     /**
      * Get id
      *
@@ -152,5 +172,29 @@ class Contact
     public function getSociete()
     {
         return $this->societe;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return Contact
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 }

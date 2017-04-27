@@ -6,7 +6,11 @@
     <h1>{{ contact.prenom }} {{ contact.nom | upper }}</h1>
 
     {% if contact.societe %}
-        <p>Société : {{ contact.societe.nom }}</p>
+        <p>Société :
+            <a href="{{ path('app_societe_show', {'id': contact.societe.id}) }}">
+                {{ contact.societe.nom }}
+            </a>
+        </p>
     {% endif %}
 
 {% endblock %}

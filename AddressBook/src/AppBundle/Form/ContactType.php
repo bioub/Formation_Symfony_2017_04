@@ -18,6 +18,7 @@ class ContactType extends AbstractType
         $builder
             ->add('prenom')
             ->add('nom')
+            ->add('email')
             ->add('dateNaissance')
             ->add('societe');
             //->add('submit', SubmitType::class);

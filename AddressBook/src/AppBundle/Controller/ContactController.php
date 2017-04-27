@@ -4,7 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Contact;
 use AppBundle\Form\ContactType;
-use AppBundle\Manager\ContactManager;
+use AppBundle\Manager\ContactDoctrineORMManager;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Driver\PDOStatement;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -39,7 +39,6 @@ class ContactController extends Controller
     public function addAction(Request $request)
     {
         $form = $this->createForm(ContactType::class);
-
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -64,6 +63,10 @@ class ContactController extends Controller
     {
         $contactManager = $this->get('app.manager.contact_manager');
         $contact = $contactManager->getByIdWithSociete($id);
+
+        if (!$contact) {
+            throw $this->createNotFoundException("Le contact n'existe pas");
+        }
 
         return $this->render('AppBundle:Contact:show.html.twig', array(
             'contact' => $contact

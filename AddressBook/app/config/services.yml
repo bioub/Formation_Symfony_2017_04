@@ -9,5 +9,8 @@ services:
     #    arguments: ['@another_service_name', 'plain_value', '%parameter_name%']
 
     app.manager.contact_manager:
-        class: AppBundle\Manager\ContactManager
-        arguments: ['@doctrine']
+        class: AppBundle\Manager\ContactDoctrineORMManager
+        arguments: ['@doctrine.orm.entity_manager']
+
+    #app.manager.contact_manager:
+    #    class: AppBundle\Manager\ContactArrayManager

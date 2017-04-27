@@ -1,7 +1,14 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}AppBundle:Societe:show{% endblock %}
+{% block title %}{{ societe.nom }}{% endblock %}
 
 {% block body %}
-<h1>Welcome to the Societe:show page</h1>
+    <h1>{{ societe.nom }}</h1>
+    <p>Ville : {{ societe.ville }}</p>
+    <p>Contacts : </p>
+    <ul>
+        {% for c in societe.contacts %}
+        <li>{{ c.prenom }} {{ c.nom }}</li>
+        {% endfor %}
+    </ul>
 {% endblock %}

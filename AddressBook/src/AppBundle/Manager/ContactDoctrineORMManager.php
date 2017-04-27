@@ -4,23 +4,22 @@ namespace AppBundle\Manager;
 
 
 use AppBundle\Entity\Contact;
-use Doctrine\Bundle\DoctrineBundle\Registry;
-use Doctrine\DBAL\Connection;
+use Doctrine\ORM\EntityManager;
 
-class ContactManager
+class ContactDoctrineORMManager implements ContactManagerInterface
 {
     /**
-     * @var Registry
+     * @var EntityManager
      */
-    protected $doctrine;
+    protected $em;
 
     /**
      * ContactManager constructor.
-     * @param Registry $doctrine
+     * @param EntityManager $em
      */
-    public function __construct(Registry $doctrine)
+    public function __construct(EntityManager $em)
     {
-        $this->doctrine = $doctrine;
+        $this->em = $em;
     }
 
 
@@ -34,28 +33,26 @@ class ContactManager
                 LEFT JOIN societe s ON s.id = societe_id
                 GROUP BY s.nom";
 
-        /** @var Connection $connect */
-        $connect = $this->doctrine->getConnection();
+        $connect = $this->em->getConnection();
         $stmt = $connect->query($sql);
         return $stmt->fetchAll();
     }
 
     public function getAll()
     {
-        $repo = $this->doctrine->getRepository(Contact::class);
+        $repo = $this->em->getRepository(Contact::class);
         return $repo->findBy([], ['prenom' => 'ASC']);
     }
 
     public function getByIdWithSociete($id)
     {
-        $repo = $this->doctrine->getRepository(Contact::class);
+        $repo = $this->em->getRepository(Contact::class);
         return $repo->findWithSocieteInSql($id);
     }
 
     public function save(Contact $contact)
     {
-        $em = $this->doctrine->getManager();
-        $em->persist($contact);
-        $em->flush();
+        $this->em->persist($contact);
+        $this->em->flush();
     }
 }
