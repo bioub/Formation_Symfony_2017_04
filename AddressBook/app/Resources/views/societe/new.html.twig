@@ -14,3 +14,14 @@
         </li>
     </ul>
 {% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('select2-4.0.3/dist/css/select2.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+<script src="{{ asset('select2-4.0.3/dist/js/select2.js') }}"></script>
+    <script>
+        $("#appbundle_societe_contacts").select2();
+    </script>
+{% endblock %}

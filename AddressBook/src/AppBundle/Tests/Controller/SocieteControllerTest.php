@@ -6,6 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class SocieteControllerTest extends WebTestCase
 {
+    public function testASupprimer() {
+
+    }
     /*
     public function testCompleteScenario()
     {

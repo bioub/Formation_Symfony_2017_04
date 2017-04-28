@@ -26,8 +26,8 @@ class Contact
      * @var string
      *
      * @ORM\Column(length=40)
-     * @Assert\NotBlank()
-     * @Assert\Length(max="40")
+     * @Assert\NotBlank(message="Le prénom est obligatoire")
+     * @Assert\Length(max="40", maxMessage="Le prénom ne doit pas dépasser 40 caractères")
      */
     protected $prenom;
 
@@ -35,8 +35,8 @@ class Contact
      * @var string
      *
      * @ORM\Column(length=40)
-     * @Assert\NotBlank()
-     * @Assert\Length(max="40")
+     * @Assert\NotBlank(message="Le nom est obligatoire")
+     * @Assert\Length(max="40", maxMessage="Le nom ne doit pas dépasser 40 caractères")
      */
     protected $nom;
 
@@ -203,5 +203,10 @@ class Contact
     public function getEmail()
     {
         return $this->email;
+    }
+
+    public function __toString()
+    {
+        return $this->prenom . ' ' . $this->nom;
     }
 }

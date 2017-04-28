@@ -12,9 +12,17 @@
         <server name="KERNEL_DIR" value="app/" />
     </php>
 
+    <logging>
+        <log type="junit" target="var/phpunit/report/report.xml"/>
+        <log type="coverage-html" target="var/phpunit/coverage"/>
+    </logging>
+
     <testsuites>
         <testsuite name="Project Test Suite">
             <directory>tests</directory>
+            <directory>src/*Bundle/Tests</directory>
+            <directory>src/*/*Bundle/Tests</directory>
+            <directory>src/*/Bundle/*Bundle/Tests</directory>
         </testsuite>
     </testsuites>
 

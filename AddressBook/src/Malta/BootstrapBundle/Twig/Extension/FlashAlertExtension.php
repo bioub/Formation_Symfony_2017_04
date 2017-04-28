@@ -11,7 +11,7 @@ namespace Malta\BootstrapBundle\Twig\Extension;
 
 use Symfony\Component\HttpFoundation\Session\Session;
 
-class AlertExtension extends \Twig_Extension
+class FlashAlertExtension extends \Twig_Extension
 {
     /**
      * @var Session
@@ -31,7 +31,7 @@ class AlertExtension extends \Twig_Extension
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction('bootstrap_alert', [$this, 'alert'], ['is_safe' => ['html']])
+            new \Twig_SimpleFunction('bootstrap_flash_alert', [$this, 'alert'], ['is_safe' => ['html']])
         ];
     }
 

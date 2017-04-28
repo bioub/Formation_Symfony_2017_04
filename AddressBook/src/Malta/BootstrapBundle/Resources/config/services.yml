@@ -1,6 +1,6 @@
 services:
   malta.bootstrap.twig.extension.alert:
-    class: Malta\BootstrapBundle\Twig\Extension\AlertExtension
+    class: Malta\BootstrapBundle\Twig\Extension\FlashAlertExtension
     arguments: ['@session']
     public: false
     tags:

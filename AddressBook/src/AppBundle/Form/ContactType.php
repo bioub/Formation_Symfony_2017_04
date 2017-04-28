@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,6 +21,7 @@ class ContactType extends AbstractType
             ->add('nom')
             ->add('email')
             ->add('dateNaissance')
+            // ->add('dateNaissance', BirthdayType::class, ['years' => [1985,1986,1987]])
             ->add('societe');
             //->add('submit', SubmitType::class);
     }
